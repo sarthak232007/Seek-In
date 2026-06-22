@@ -1,10 +1,4 @@
-// ============================================
-// script.js
-// Handles: switching from hero screen to chat screen,
-// and sending questions to the Flask backend.
-// ============================================
 
-// ----- Screen switching -----
 const heroScreen = document.getElementById("hero-screen");
 const chatScreen = document.getElementById("chat-screen");
 const startBtn = document.getElementById("start-btn");
@@ -12,17 +6,17 @@ const startBtn = document.getElementById("start-btn");
 startBtn.addEventListener("click", () => {
   heroScreen.classList.add("hidden");
   chatScreen.classList.remove("hidden");
-  // Auto-focus the input so the user can start typing immediately
+  
   document.getElementById("question-input").focus();
 });
 
 
-// ----- Chat logic (same as before, talks to Flask backend) -----
+
 const chatBox = document.getElementById("chat-box");
 const input = document.getElementById("question-input");
 const sendBtn = document.getElementById("send-btn");
 
-// This is where your Flask backend runs locally.
+
 const BACKEND_URL = "http://127.0.0.1:5000/ask";
 
 function addMessage(text, sender) {
@@ -34,9 +28,7 @@ function addMessage(text, sender) {
   return div;
 }
 
-// Renders the bot's answer as a clean card (label + answer text)
-// instead of a plain gray bubble -- looks more like an analytics
-// tool's output, less like a generic chatbot reply.
+
 function addAnswerCard(answerText) {
   const card = document.createElement("div");
   card.className = "answer-card";
@@ -72,7 +64,7 @@ async function sendQuestion() {
 
     const data = await response.json();
 
-    // Remove the "Thinking..." message
+    
     chatBox.removeChild(thinkingMsg);
 
     if (data.success) {

@@ -1,9 +1,4 @@
-# ============================================
-# app.py
-# Main Flask application. This connects ALL the pieces:
-# question -> obfuscation -> Gemini SQL -> validation ->
-# reverse mapping -> real database -> insight -> response.
-# ============================================
+
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -15,7 +10,7 @@ from db import run_query
 from insight_generator import generate_insight
 
 app = Flask(__name__)
-CORS(app)  # allows our frontend HTML file to call this backend
+CORS(app)  
 
 
 @app.route("/ask", methods=["POST"])
@@ -34,7 +29,7 @@ def ask():
     if not user_question:
         return jsonify({"success": False, "error": "No question provided."}), 400
 
-    # Step 1: Ask Gemini to generate SQL using FAKE schema names
+
     try:
         fake_sql = generate_sql_from_question(user_question)
     except Exception as e:
@@ -46,10 +41,10 @@ def ask():
             }), 429
         return jsonify({"success": False, "error": f"AI error: {error_text}"}), 500
 
-    # Step 2: Convert fake names back to real table/column names
+    
     real_sql = fake_to_real(fake_sql)
 
-    # Step 3: Validate the query is safe BEFORE running it
+   
     safe, reason = is_query_safe(real_sql)
     if not safe:
         return jsonify({
@@ -58,7 +53,7 @@ def ask():
             "sql": real_sql
         }), 400
 
-    # Step 4: Run the validated, real SQL on the real database
+    
     try:
         rows = run_query(real_sql)
     except Exception as e:
@@ -68,15 +63,13 @@ def ask():
             "sql": real_sql
         }), 500
 
-    # Step 5: Turn raw rows into a plain English answer
+    
     try:
         answer = generate_insight(user_question, rows)
     except Exception as e:
         error_text = str(e)
         if "RESOURCE_EXHAUSTED" in error_text or "429" in error_text:
-            # Fall back to showing raw data instead of failing completely --
-            # the user still gets a useful answer even if the AI summary
-            # step is rate-limited.
+            
             answer = f"(AI summary temporarily unavailable due to rate limit) Raw results: {rows}"
         else:
             answer = f"Could not generate a summary: {error_text}"

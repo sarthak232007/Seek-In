@@ -1,8 +1,3 @@
-# ============================================
-# insight_generator.py
-# Takes raw database results (list of dicts) and turns them into
-# a plain English summary using an AI model via Groq.
-# ============================================
 
 import os
 from groq import Groq

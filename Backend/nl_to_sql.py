@@ -1,15 +1,4 @@
-# ============================================
-# nl_to_sql.py
-#
-# This is the heart of the project: it takes the user's plain English
-# question, combines it with our FAKE schema (from obfuscation.py),
-# sends both to an AI model via Groq, and gets back a SQL query --
-# still using FAKE table/column names at this point.
-#
-# We switched from Gemini to Groq because Gemini's free tier
-# currently allows only ~20 requests/day, while Groq's free tier
-# allows around 1,000 requests/day -- much safer for live demos.
-# ============================================
+
 
 import os
 from groq import Groq
@@ -18,22 +7,12 @@ from obfuscation import get_fake_schema_description
 
 load_dotenv()
 
-# ----------------------------------------------
-# Create ONE client object that talks to Groq.
-# It reads GROQ_API_KEY from the environment automatically.
-# ----------------------------------------------
+
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-# Llama 3.3 70B is fast, free-tier friendly, and good at structured
-# tasks like SQL generation.
+
 MODEL_NAME = "llama-3.3-70b-versatile"
 
-# ----------------------------------------------
-# TEST MODE: when TEST_MODE=true is set in .env, this file skips
-# calling the real AI entirely and returns a hardcoded fake response
-# instead. Lets you test Flask, frontend, database, etc. without
-# using up API quota. Set TEST_MODE=false when you want real answers.
-# ----------------------------------------------
 TEST_MODE = os.getenv("TEST_MODE", "false").lower() == "true"
 
 
@@ -50,13 +29,10 @@ def generate_sql_from_question(user_question):
     if TEST_MODE:
         return "SELECT col_A2 FROM table_A WHERE col_A3 = 'Lucknow'"
 
-    # Get our fake schema description (table_A, col_A1, etc.)
-    # This is the ONLY information about our database structure
-    # that the AI ever sees.
+    
     fake_schema = get_fake_schema_description()
 
-    # Being very explicit here matters a lot -- vague prompts
-    # produce unreliable SQL.
+  
     prompt = f"""You are a SQL generator. You will be given a database schema using
 generic table and column names, and a question in plain English.
 
@@ -76,7 +52,7 @@ Question: {user_question}
 
 SQL query:"""
 
-    # Groq uses the same "chat messages" format as OpenAI's API.
+    
     response = client.chat.completions.create(
         model=MODEL_NAME,
         messages=[

@@ -1,6 +1,4 @@
-/* ============================================
-   GLOBAL RESET
-   ============================================ */
+
 * {
   margin: 0;
   padding: 0;
@@ -9,19 +7,14 @@
 
 body {
   font-family: -apple-system, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  /* This stack pulls each OS's own polished UI font (San Francisco on
-     Mac/iOS, Segoe UI on Windows, Roboto on Android/Chrome OS) instead
-     of a generic default -- so it looks professional everywhere
-     without needing any external font file or CDN link. */
+  /
 }
 
 .hidden {
   display: none !important;
 }
 
-/* ============================================
-   SCREEN 1: HERO / LANDING (FULL SCREEN)
-   ============================================ */
+
 .hero-screen {
   min-height: 100vh;
   width: 100%;
@@ -29,19 +22,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;          /* no outer padding eating up space */
+  padding: 0;          /
 }
 
-/* The card itself -- now fills the entire screen instead of
-   being a small bordered rectangle. Still holds the grid
-   background + content, matching the reference image's look. */
+
 .hero-card {
   position: relative;
   width: 100%;
-  height: 100vh;        /* fill the whole screen */
-  max-width: none;       /* removed the 380px cap that made it a small card */
+  height: 100vh;     
+  max-width: none;       
   background: #0d0f14;
-  border: none;          /* no border needed when it's full screen */
+  border: none;          
   border-radius: 0;
   overflow: hidden;
   display: flex;
@@ -50,8 +41,7 @@ body {
   padding: 2rem;
 }
 
-/* Grid background drawn with pure CSS gradients --
-   no image file needed, so this can never "fail to load" */
+
 .grid-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -59,16 +49,16 @@ body {
     linear-gradient(rgba(125, 211, 240, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(125, 211, 240, 0.07) 1px, transparent 1px);
   background-size: 28px 28px;
-  /* Fades out toward the bottom so it doesn't compete with text */
+  
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2) 75%);
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2) 75%);
   pointer-events: none;
 }
 
 .hero-content {
-  position: relative; /* sits above the grid overlay */
+  position: relative;
   text-align: center;
-  max-width: 420px;     /* keeps text/button readable, doesn't sprawl edge-to-edge */
+  max-width: 420px;     
   width: 100%;
 }
 
@@ -76,9 +66,7 @@ body {
   width: 88px;
   height: 88px;
   margin: 0 auto 1.5rem;
-  /* No background, border, or radius here anymore --
-     the frame is now just an invisible sizing box.
-     The circular look + any styling lives on the image itself. */
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,8 +75,8 @@ body {
 .logo-mark {
   width: 100%;
   height: 100%;
-  object-fit: cover;     /* fills the circle completely, cropping if needed */
-  border-radius: 50%;    /* makes the image itself circular */
+  object-fit: cover;     
+  border-radius: 50%;    
 }
 
 .hero-title {
@@ -97,7 +85,7 @@ body {
   color: #e8faf7;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
-  /* Layered gradient glow behind the text */
+  
   text-shadow:
     0 0 12px rgba(125, 211, 240, 0.55),
     0 0 32px rgba(125, 211, 240, 0.35),
@@ -126,7 +114,7 @@ body {
   align-items: center;
   gap: 8px;
   transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  /* Standing gradient glow, not just on hover */
+ 
   box-shadow:
     0 0 0 1px rgba(125, 211, 240, 0.15),
     0 4px 20px rgba(125, 211, 240, 0.25),
@@ -152,7 +140,7 @@ body {
   margin-top: 1.5rem;
 }
 
-/* Credit line -- pinned to the bottom-right corner of the card */
+
 .hero-credit {
   position: absolute;
   bottom: 1.25rem;
@@ -163,9 +151,7 @@ body {
 }
 
 
-/* ============================================
-   SCREEN 2: CHAT INTERFACE
-   ============================================ */
+
 .chat-screen {
   min-height: 100vh;
   background-color: #06070a;

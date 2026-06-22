@@ -1,7 +1,4 @@
-# ============================================
-# db.py
-# Connects to MySQL and runs real SQL queries, returning results.
-# ============================================
+
 
 import os
 import mysql.connector
@@ -35,7 +32,7 @@ def run_query(sql_query):
     """
     connection = get_connection()
 
-    # dictionary=True makes each row come back as a dict instead of a tuple
+    
     cursor = connection.cursor(dictionary=True)
 
     cursor.execute(sql_query)
@@ -47,9 +44,7 @@ def run_query(sql_query):
     return results
 
 
-# ----------------------------------------------
-# Test block -- runs only when this file is executed directly
-# ----------------------------------------------
+
 if __name__ == "__main__":
     test_query = "SELECT name, city FROM customers WHERE city = 'Lucknow'"
     print("Running test query:", test_query)
