@@ -1,0 +1,29 @@
+{
+    "tables": {
+        "customers": "table_A",
+        "products": "table_B",
+        "orders": "table_C"
+    },
+    "columns": {
+        "customers": {
+            "customer_id": {"fake_name": "col_A1", "type": "number (unique id)"},
+            "name": {"fake_name": "col_A2", "type": "text (person name)"},
+            "city": {"fake_name": "col_A3", "type": "text (city name)"},
+            "email": {"fake_name": "col_A4", "type": "text (email address)"},
+            "signup_date": {"fake_name": "col_A5", "type": "date"}
+        },
+        "products": {
+            "product_id": {"fake_name": "col_B1", "type": "number (unique id)"},
+            "name": {"fake_name": "col_B2", "type": "text (product name)"},
+            "category": {"fake_name": "col_B3", "type": "text (category name)"},
+            "price": {"fake_name": "col_B4", "type": "number (decimal currency)"}
+        },
+        "orders": {
+            "order_id": {"fake_name": "col_C1", "type": "number (unique id)"},
+            "customer_id": {"fake_name": "col_C2", "type": "number (links to table_A col_A1)"},
+            "product_id": {"fake_name": "col_C3", "type": "number (links to table_B col_B1)"},
+            "quantity": {"fake_name": "col_C4", "type": "number (integer count)"},
+            "order_date": {"fake_name": "col_C5", "type": "date"}
+        }
+    }
+}

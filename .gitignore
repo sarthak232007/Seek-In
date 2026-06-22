@@ -1,0 +1,14 @@
+# Environment variables and secrets -- NEVER commit these
+.env
+
+# Python virtual environment
+venv/
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/

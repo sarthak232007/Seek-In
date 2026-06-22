@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Seek-IN Analytics</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================
+     SCREEN 1: HERO / LANDING
+     Dark hero with grid background, logo, and CTA.
+     Pure HTML/CSS -- no external fonts or CDN links,
+     so nothing breaks if deployed somewhere that blocks
+     external requests.
+     ============================================ -->
+<div id="hero-screen" class="screen hero-screen">
+
+  <div class="hero-card">
+
+    <!-- Subtle grid background, drawn with CSS only (no image file) -->
+    <div class="grid-overlay"></div>
+
+    <div class="hero-content">
+
+      <!-- Your own logo: drop it at frontend/public/logo.png -->
+      <div class="logo-frame">
+        <img class="logo-mark" src="public/logo.png" alt="Seek-IN logo">
+      </div>
+
+      <h1 class="hero-title">Seek-IN</h1>
+      <p class="hero-tagline">
+        Ask your business data a question in plain English.
+        No SQL, no analysts, no exposed schema.
+      </p>
+
+      <button id="start-btn" class="hero-cta">
+        Start asking
+        <span class="arrow">&#8594;</span>
+      </button>
+
+      <p class="hero-footnote">Secure schema obfuscation &middot; Powered by AI</p>
+
+    </div>
+
+    <!-- Credit line, pinned to the bottom-right corner of the card -->
+    <p class="hero-credit">~ by team Binaries</p>
+
+  </div>
+
+</div>
+
+
+<!-- ============================================
+     SCREEN 2: CHAT INTERFACE
+     ============================================ -->
+<div id="chat-screen" class="screen chat-screen hidden">
+
+  <div class="chat-container">
+
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <img class="logo-mark-small" src="public/logo.png" alt="Seek-IN logo">
+        <span class="chat-title">Seek-IN</span>
+      </div>
+      <span class="chat-status">
+        <span class="status-dot"></span>
+        connected
+      </span>
+    </div>
+
+    <div id="chat-box" class="chat-box"></div>
+
+    <div class="input-row">
+      <input type="text" id="question-input" placeholder="Ask about your business data...">
+      <button id="send-btn">Ask</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
